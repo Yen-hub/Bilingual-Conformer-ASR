@@ -1,0 +1,43 @@
+# Python environment of this recipe, managed by pixi (https://pixi.sh).
+# Run ./setup_env.sh once: it points pixi's environment and cache directories at
+# the node-shared NVMe scratch (/work/nvme/bjdh/$USER/python_env) and installs
+# everything below. Afterwards `pixi shell` enters the environment (or prefix
+# commands with `pixi run`).
+#
+# Python 3.13, torch 2.15 (CUDA 13 wheels), torchaudio 2.11 (not imported by the code,
+# kept for convenience) plus requirements.txt.
+
+[workspace]
+name = "coding4"
+channels = ["conda-forge"]
+platforms = ["linux-64"]
+
+[dependencies]
+python = "3.13.*"
+ffmpeg = "*"
+pip = "*"
+
+[pypi-dependencies]
+torch = "==2.15.0"
+torchaudio = "==2.11.1"
+# requirements.txt
+kaldiio = "*"
+numpy = "*"
+matplotlib = "*"
+configargparse = "*"
+tensorboard = "*"
+editdistance = "*"
+PyYAML = "*"
+jiwer = "*"
+sentencepiece = "*"
+soundfile = "*"
+librosa = "*"
+torch_complex = "*"
+# dataset download (ms180/coding4 on the Hub)
+huggingface_hub = "*"
+
+[tasks]
+# pixi run <task>
+train = "python train.py --tag monolingual --mode monolingual --train_json dump/raw/train_monolingual/data.json --valid_json dump/raw/dev_monolingual/data.json"
+train-multi = "python train.py --tag multilingual --mode multilingual"
+decode = "python decode.py"

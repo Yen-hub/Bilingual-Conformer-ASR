@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+dump/
+exp/
+tensorboard/
+slurm-*.log
+decoded_hyp*.txt
+submit.zip
